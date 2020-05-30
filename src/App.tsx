@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import PostsPublished from "./PostsPublished";
+import RedditAPI from "./services/RedditAPI";
+import {Post} from './types/Post';
+
+const redditAPI: RedditAPI = RedditAPI.getInstance();
 
 function App() {
+  const [posts, setPosts] = useState<Post[]>([]);
+  useEffect(() => {
+    (async function requestPosts() {
+      const results = await redditAPI.fetchPosts();
+      const posts = results.data.children.map(post => post as Post);
+      setPosts(posts);
+    })();
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PostsPublished posts={posts} />
+      <button>Next</button>
     </div>
   );
 }

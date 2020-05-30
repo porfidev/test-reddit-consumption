@@ -3,7 +3,7 @@ export interface RedditResponse {
   data: {
     modhash: string;
     dist: string;
-    children: object;
+    children: object[];
     after: string;
     before: string | null;
   };
@@ -26,7 +26,8 @@ class RedditAPI {
   private async httpRequest<T>(request: RequestInfo): Promise<T> {
     try {
       const response = await fetch(request);
-      return await response.json();
+      const body = await response.json();
+      return body;
     } catch (error) {
       return error;
     }
@@ -36,7 +37,8 @@ class RedditAPI {
     const requestUrl = after
       ? `${this.url}&limit=${limit}&after=${after}`
       : `${this.url}&limit=${limit}`;
-    return await this.httpRequest<RedditResponse>(`${requestUrl}`);
+    const resultRequest = await this.httpRequest<RedditResponse>(`${requestUrl}`);
+    return resultRequest;
   }
 }
 
