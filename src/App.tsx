@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './App.css';
+import './styles/main.scss';
 import PostsPublished from './PostsPublished';
 import RedditAPI from './services/RedditAPI';
 import {Post} from './types/Post';
@@ -25,8 +25,11 @@ function App() {
     return (
         <div className="App">
             <PostsPublished posts={posts}/>
-            {after && <button onClick={e => setCurrent(after)}>Next</button>}
-            {before && <button onClick={e => setCurrent(before)}>Back</button>}
+            <div className="buttons-container">
+                {after && <button onClick={e => setCurrent(after)}>Next</button>}
+                {before && <button onClick={e => setCurrent(before)}>Back</button>}
+            </div>
+
         </div>
     );
 }
