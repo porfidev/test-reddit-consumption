@@ -33,7 +33,7 @@ class RedditAPI {
     }
   }
 
-  public async fetchPosts(limit: number = 10, after?: string) {
+  public async fetchPosts(limit: number = 10, after?: string | null) {
     const requestUrl = after
       ? `${this.url}&limit=${limit}&after=${after}`
       : `${this.url}&limit=${limit}`;
