@@ -1,5 +1,10 @@
 # React Challenge
 
+## TODO LIST
+* Create store to save user view
+* Add option to hide single / all
+* Add modal error handling
+
 ## Objective
 We would like to have you complete the following code test so we can evaluate your React skills.  Please place your code in a public Github repository and commit each step of your process so we can review it.
 

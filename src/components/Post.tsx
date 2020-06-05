@@ -24,7 +24,12 @@ const Post = (post: PostType) => {
                   <h3>{data.title}</h3>
                 )}
               </div>
-              <p>Posted by: {data.author} <br /> Posted on: {new Date(parseFloat(data.created_utc) * 1000).toLocaleDateString()}</p>
+              <p>
+                Posted by: {data.author} <br /> Posted on:{" "}
+                {new Date(
+                  parseFloat(data.created_utc) * 1000
+                ).toLocaleDateString()}
+              </p>
               <p>Comments: {data.num_comments}</p>
             </div>
           </div>
